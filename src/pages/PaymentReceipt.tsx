@@ -24,6 +24,26 @@ const PaymentReceipt = () => {
   
   const payload = link.payload;
   
+  // Get service-specific gradient
+  const getServiceGradient = () => {
+    switch (link.type) {
+      case 'shipping':
+        return 'var(--shipping-gradient)';
+      case 'chalet':
+        return 'var(--chalet-gradient)';
+      case 'invoice':
+        return 'var(--invoice-gradient)';
+      case 'health':
+        return 'var(--health-gradient)';
+      case 'logistics':
+        return 'var(--logistics-gradient)';
+      case 'contract':
+        return 'var(--contract-gradient)';
+      default:
+        return 'var(--gradient-primary)';
+    }
+  };
+  
   return (
     <div className="min-h-screen py-12 bg-gradient-to-b from-background to-secondary/20" dir="rtl">
       <div className="container mx-auto px-4">
@@ -40,6 +60,19 @@ const PaymentReceipt = () => {
           </div>
           
           <Card className="p-8 shadow-elevated">
+            {/* Service Header */}
+            <div
+              className="h-24 -mx-8 -mt-8 mb-6 rounded-t-xl relative overflow-hidden"
+              style={{
+                background: getServiceGradient(),
+              }}
+            >
+              <div className="absolute inset-0 bg-black/10" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <CheckCircle2 className="w-12 h-12 text-white" />
+              </div>
+            </div>
+            
             {/* Receipt Header */}
             <div className="text-center pb-6 border-b border-border mb-6">
               <Badge className="text-sm px-4 py-2 bg-gradient-success mb-3">
@@ -57,18 +90,29 @@ const PaymentReceipt = () => {
             <div className="space-y-4 mb-6">
               <div className="flex justify-between py-3 border-b border-border">
                 <span className="text-muted-foreground">الخدمة</span>
-                <span className="font-semibold">{payload.chalet_name}</span>
+                <span className="font-semibold">
+                  {link.type === 'shipping' && 'خدمة الشحن'}
+                  {link.type === 'chalet' && payload.chalet_name}
+                  {link.type === 'invoice' && 'الفواتير'}
+                  {link.type === 'health' && 'التأمين الصحي'}
+                  {link.type === 'logistics' && 'خدمات اللوجستيات'}
+                  {link.type === 'contract' && 'العقود'}
+                </span>
               </div>
               
-              <div className="flex justify-between py-3 border-b border-border">
-                <span className="text-muted-foreground">المدة</span>
-                <span className="font-semibold">{payload.nights} ليلة</span>
-              </div>
-              
-              <div className="flex justify-between py-3 border-b border-border">
-                <span className="text-muted-foreground">عدد الضيوف</span>
-                <span className="font-semibold">{payload.guest_count} ضيف</span>
-              </div>
+              {link.type === 'chalet' && (
+                <>
+                  <div className="flex justify-between py-3 border-b border-border">
+                    <span className="text-muted-foreground">المدة</span>
+                    <span className="font-semibold">{payload.nights} ليلة</span>
+                  </div>
+                  
+                  <div className="flex justify-between py-3 border-b border-border">
+                    <span className="text-muted-foreground">عدد الضيوف</span>
+                    <span className="font-semibold">{payload.guest_count} ضيف</span>
+                  </div>
+                </>
+              )}
               
               <div className="flex justify-between py-3 border-b border-border">
                 <span className="text-muted-foreground">طريقة الدفع</span>

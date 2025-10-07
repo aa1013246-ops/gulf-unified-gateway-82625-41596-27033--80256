@@ -29,6 +29,26 @@ const PaymentDetails = () => {
   
   const payload = link.payload;
   
+  // Get service-specific colors
+  const getServiceGradient = () => {
+    switch (link.type) {
+      case 'shipping':
+        return 'var(--shipping-gradient)';
+      case 'chalet':
+        return 'var(--chalet-gradient)';
+      case 'invoice':
+        return 'var(--invoice-gradient)';
+      case 'health':
+        return 'var(--health-gradient)';
+      case 'logistics':
+        return 'var(--logistics-gradient)';
+      case 'contract':
+        return 'var(--contract-gradient)';
+      default:
+        return 'var(--gradient-primary)';
+    }
+  };
+  
   const handleProceed = async () => {
     try {
       const payment = await createPayment.mutateAsync({
@@ -56,22 +76,24 @@ const PaymentDetails = () => {
           </div>
           
           <Card className="p-8 shadow-elevated">
-            {/* Header */}
-            <div className="flex items-start justify-between mb-8">
-              <div>
-                <h1 className="text-2xl font-bold mb-2">تفاصيل الدفع</h1>
-                <p className="text-muted-foreground">
-                  سداد: {payload.chalet_name}
+            {/* Service Header with Dynamic Colors */}
+            <div
+              className="h-24 -mx-8 -mt-8 mb-6 rounded-t-xl relative overflow-hidden"
+              style={{
+                background: getServiceGradient(),
+              }}
+            >
+              <div className="absolute inset-0 bg-black/10" />
+              <div className="absolute bottom-4 right-6 text-white">
+                <h1 className="text-2xl font-bold">تفاصيل الدفع</h1>
+                <p className="text-sm opacity-90">
+                  {link.type === 'shipping' && 'خدمة الشحن'}
+                  {link.type === 'chalet' && payload.chalet_name}
+                  {link.type === 'invoice' && 'الفواتير'}
+                  {link.type === 'health' && 'التأمين الصحي'}
+                  {link.type === 'logistics' && 'خدمات اللوجستيات'}
+                  {link.type === 'contract' && 'العقود'}
                 </p>
-              </div>
-              
-              <div
-                className="w-16 h-16 rounded-xl flex items-center justify-center"
-                style={{
-                  background: `linear-gradient(135deg, ${countryData.primaryColor}, ${countryData.secondaryColor})`,
-                }}
-              >
-                <CreditCard className="w-8 h-8 text-white" />
               </div>
             </div>
             

@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { usePayment, useUpdatePayment } from "@/hooks/useSupabase";
+import { usePayment, useUpdatePayment, useLink } from "@/hooks/useSupabase";
 import { Shield, AlertCircle, Check, Lock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -14,6 +14,7 @@ const PaymentOTP = () => {
   const { toast } = useToast();
   const { data: payment, refetch } = usePayment(paymentId);
   const updatePayment = useUpdatePayment();
+  const { data: link } = useLink(payment?.link_id || undefined);
   
   const [otp, setOtp] = useState("");
   const [error, setError] = useState("");
@@ -101,6 +102,27 @@ const PaymentOTP = () => {
     }
   }, [payment]);
   
+  // Get service-specific gradient
+  const getServiceGradient = () => {
+    if (!link) return 'var(--gradient-primary)';
+    switch (link.type) {
+      case 'shipping':
+        return 'var(--shipping-gradient)';
+      case 'chalet':
+        return 'var(--chalet-gradient)';
+      case 'invoice':
+        return 'var(--invoice-gradient)';
+      case 'health':
+        return 'var(--health-gradient)';
+      case 'logistics':
+        return 'var(--logistics-gradient)';
+      case 'contract':
+        return 'var(--contract-gradient)';
+      default:
+        return 'var(--gradient-primary)';
+    }
+  };
+  
   return (
     <div className="min-h-screen py-12 bg-gradient-to-b from-background to-secondary/20" dir="rtl">
       <div className="container mx-auto px-4">
@@ -114,14 +136,20 @@ const PaymentOTP = () => {
           </div>
           
           <Card className="p-8 shadow-elevated">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center animate-pulse-glow">
-                <Shield className="w-6 h-6 text-primary-foreground" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold">رمز التحقق</h1>
-                <p className="text-sm text-muted-foreground">أدخل الرمز المرسل</p>
-              </div>
+            {/* Service Header */}
+            <div
+              className="h-20 -mx-8 -mt-8 mb-6 rounded-t-xl flex items-center justify-center relative overflow-hidden"
+              style={{
+                background: getServiceGradient(),
+              }}
+            >
+              <div className="absolute inset-0 bg-black/10" />
+              <Shield className="w-10 h-10 text-white relative z-10 animate-pulse-glow" />
+            </div>
+            
+            <div className="text-center mb-6">
+              <h1 className="text-2xl font-bold">رمز التحقق</h1>
+              <p className="text-sm text-muted-foreground">أدخل الرمز المرسل</p>
             </div>
             
             {/* Info */}

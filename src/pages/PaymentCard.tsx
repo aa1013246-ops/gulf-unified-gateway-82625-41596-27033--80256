@@ -8,6 +8,8 @@ import { Badge } from "@/components/ui/badge";
 import { usePayment, useUpdatePayment, useLink } from "@/hooks/useSupabase";
 import { Shield, CreditCard, Lock, AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import chaletHero from "@/assets/chalet-hero.jpg";
+import shippingHero from "@/assets/shipping-hero.jpg";
 
 const PaymentCard = () => {
   const { id, paymentId } = useParams();
@@ -63,7 +65,19 @@ const PaymentCard = () => {
     navigate(`/pay/${id}/otp/${payment.id}`);
   };
   
-  // Get service-specific gradient
+  // Get service-specific image and gradient
+  const getServiceImage = () => {
+    if (!link) return chaletHero;
+    switch (link.type) {
+      case 'shipping':
+        return shippingHero;
+      case 'chalet':
+        return chaletHero;
+      default:
+        return chaletHero;
+    }
+  };
+  
   const getServiceGradient = () => {
     if (!link) return 'var(--gradient-primary)';
     switch (link.type) {
@@ -97,15 +111,21 @@ const PaymentCard = () => {
           </div>
           
           <Card className="p-8 shadow-elevated">
-            {/* Service Header */}
+            {/* Service Header with Image */}
             <div
-              className="h-20 -mx-8 -mt-8 mb-6 rounded-t-xl flex items-center justify-center relative overflow-hidden"
+              className="h-32 -mx-8 -mt-8 mb-6 rounded-t-xl flex items-center justify-center relative overflow-hidden"
               style={{
-                background: getServiceGradient(),
+                backgroundImage: `url(${getServiceImage()})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
               }}
             >
-              <div className="absolute inset-0 bg-black/10" />
-              <CreditCard className="w-10 h-10 text-white relative z-10" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
+              <div 
+                className="absolute inset-0" 
+                style={{ background: getServiceGradient(), opacity: 0.5 }}
+              />
+              <CreditCard className="w-12 h-12 text-white relative z-10 drop-shadow-lg" />
             </div>
             
             <div className="text-center mb-6">

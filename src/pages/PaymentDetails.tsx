@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { useLink, useCreatePayment } from "@/hooks/useSupabase";
 import { getCountryByCode, formatCurrency } from "@/lib/countries";
 import { CreditCard, Shield, ArrowLeft, Info } from "lucide-react";
+import chaletHero from "@/assets/chalet-hero.jpg";
+import shippingHero from "@/assets/shipping-hero.jpg";
 
 const PaymentDetails = () => {
   const { id } = useParams();
@@ -29,7 +31,18 @@ const PaymentDetails = () => {
   
   const payload = link.payload;
   
-  // Get service-specific colors
+  // Get service-specific image and gradient
+  const getServiceImage = () => {
+    switch (link.type) {
+      case 'shipping':
+        return shippingHero;
+      case 'chalet':
+        return chaletHero;
+      default:
+        return chaletHero;
+    }
+  };
+  
   const getServiceGradient = () => {
     switch (link.type) {
       case 'shipping':
@@ -51,9 +64,11 @@ const PaymentDetails = () => {
   
   const handleProceed = async () => {
     try {
+      const amount = link.type === 'chalet' ? payload.total_amount : payload.price;
+      
       const payment = await createPayment.mutateAsync({
         link_id: link.id,
-        amount: payload.total_amount,
+        amount: amount,
         currency: countryData.currency,
       });
       
@@ -76,17 +91,23 @@ const PaymentDetails = () => {
           </div>
           
           <Card className="p-8 shadow-elevated">
-            {/* Service Header with Dynamic Colors */}
+            {/* Service Header with Image */}
             <div
-              className="h-24 -mx-8 -mt-8 mb-6 rounded-t-xl relative overflow-hidden"
+              className="h-48 -mx-8 -mt-8 mb-6 rounded-t-xl relative overflow-hidden"
               style={{
-                background: getServiceGradient(),
+                backgroundImage: `url(${getServiceImage()})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
               }}
             >
-              <div className="absolute inset-0 bg-black/10" />
-              <div className="absolute bottom-4 right-6 text-white">
-                <h1 className="text-2xl font-bold">تفاصيل الدفع</h1>
-                <p className="text-sm opacity-90">
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+              <div 
+                className="absolute inset-0" 
+                style={{ background: getServiceGradient(), opacity: 0.4 }}
+              />
+              <div className="absolute bottom-4 right-6 text-white z-10">
+                <h1 className="text-3xl font-bold mb-1">تفاصيل الدفع</h1>
+                <p className="text-lg opacity-90">
                   {link.type === 'shipping' && 'خدمة الشحن'}
                   {link.type === 'chalet' && payload.chalet_name}
                   {link.type === 'invoice' && 'الفواتير'}
@@ -101,25 +122,57 @@ const PaymentDetails = () => {
             <div className="space-y-4 mb-8">
               <div className="flex justify-between py-3 border-b border-border">
                 <span className="text-muted-foreground">الخدمة</span>
-                <span className="font-semibold">حجز شاليه</span>
-              </div>
-              
-              <div className="flex justify-between py-3 border-b border-border">
-                <span className="text-muted-foreground">عدد الليالي</span>
-                <span className="font-semibold">{payload.nights} ليلة</span>
-              </div>
-              
-              <div className="flex justify-between py-3 border-b border-border">
-                <span className="text-muted-foreground">سعر الليلة</span>
                 <span className="font-semibold">
-                  {formatCurrency(payload.price_per_night, countryData.currency)}
+                  {link.type === 'shipping' && 'خدمة الشحن'}
+                  {link.type === 'chalet' && 'حجز شاليه'}
+                  {link.type === 'invoice' && 'الفواتير'}
+                  {link.type === 'health' && 'التأمين الصحي'}
+                  {link.type === 'logistics' && 'خدمات اللوجستيات'}
+                  {link.type === 'contract' && 'العقود'}
                 </span>
               </div>
+              
+              {link.type === 'chalet' && (
+                <>
+                  <div className="flex justify-between py-3 border-b border-border">
+                    <span className="text-muted-foreground">عدد الليالي</span>
+                    <span className="font-semibold">{payload.nights} ليلة</span>
+                  </div>
+                  
+                  <div className="flex justify-between py-3 border-b border-border">
+                    <span className="text-muted-foreground">سعر الليلة</span>
+                    <span className="font-semibold">
+                      {formatCurrency(payload.price_per_night, countryData.currency)}
+                    </span>
+                  </div>
+                </>
+              )}
+              
+              {link.type === 'shipping' && (
+                <>
+                  <div className="flex justify-between py-3 border-b border-border">
+                    <span className="text-muted-foreground">نوع الخدمة</span>
+                    <span className="font-semibold">
+                      {payload.serviceType === 'standard' && 'عادي'}
+                      {payload.serviceType === 'express' && 'سريع'}
+                      {payload.serviceType === 'cod' && 'الدفع عند الاستلام'}
+                    </span>
+                  </div>
+                  
+                  <div className="flex justify-between py-3 border-b border-border">
+                    <span className="text-muted-foreground">الوزن</span>
+                    <span className="font-semibold">{payload.package?.weight} كجم</span>
+                  </div>
+                </>
+              )}
               
               <div className="flex justify-between py-4 bg-gradient-primary/10 rounded-lg px-4">
                 <span className="text-lg font-bold">المبلغ الإجمالي</span>
                 <span className="text-2xl font-bold text-primary">
-                  {formatCurrency(payload.total_amount, countryData.currency)}
+                  {formatCurrency(
+                    link.type === 'chalet' ? payload.total_amount : payload.price,
+                    countryData.currency
+                  )}
                 </span>
               </div>
             </div>

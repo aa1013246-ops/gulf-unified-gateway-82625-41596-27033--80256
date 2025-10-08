@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { usePayment, useLink } from "@/hooks/useSupabase";
 import { getCountryByCode, formatCurrency } from "@/lib/countries";
 import { CheckCircle2, Download, Home, Share2 } from "lucide-react";
+import chaletHero from "@/assets/chalet-hero.jpg";
+import shippingHero from "@/assets/shipping-hero.jpg";
 
 const PaymentReceipt = () => {
   const { paymentId } = useParams();
@@ -24,7 +26,18 @@ const PaymentReceipt = () => {
   
   const payload = link.payload;
   
-  // Get service-specific gradient
+  // Get service-specific image and gradient
+  const getServiceImage = () => {
+    switch (link.type) {
+      case 'shipping':
+        return shippingHero;
+      case 'chalet':
+        return chaletHero;
+      default:
+        return chaletHero;
+    }
+  };
+  
   const getServiceGradient = () => {
     switch (link.type) {
       case 'shipping':
@@ -60,16 +73,22 @@ const PaymentReceipt = () => {
           </div>
           
           <Card className="p-8 shadow-elevated">
-            {/* Service Header */}
+            {/* Service Header with Image */}
             <div
-              className="h-24 -mx-8 -mt-8 mb-6 rounded-t-xl relative overflow-hidden"
+              className="h-40 -mx-8 -mt-8 mb-6 rounded-t-xl relative overflow-hidden"
               style={{
-                background: getServiceGradient(),
+                backgroundImage: `url(${getServiceImage()})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
               }}
             >
-              <div className="absolute inset-0 bg-black/10" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <CheckCircle2 className="w-12 h-12 text-white" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
+              <div 
+                className="absolute inset-0" 
+                style={{ background: getServiceGradient(), opacity: 0.4 }}
+              />
+              <div className="absolute inset-0 flex items-center justify-center z-10">
+                <CheckCircle2 className="w-16 h-16 text-white drop-shadow-lg" />
               </div>
             </div>
             

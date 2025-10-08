@@ -138,7 +138,7 @@ const PaymentOTP = () => {
   };
   
   return (
-    <div className="min-h-screen py-12 bg-gradient-to-b from-background to-secondary/20" dir="rtl">
+    <div className="min-h-screen py-12 bg-gradient-to-b from-secondary/30 to-background" dir="rtl">
       <div className="container mx-auto px-4">
         <div className="max-w-md mx-auto">
           {/* Security Badge */}
@@ -159,10 +159,10 @@ const PaymentOTP = () => {
                 backgroundPosition: 'center',
               }}
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40" />
               <div 
                 className="absolute inset-0" 
-                style={{ background: getServiceGradient(), opacity: 0.5 }}
+                style={{ background: getServiceGradient(), opacity: 0.7 }}
               />
               <Shield className="w-12 h-12 text-white relative z-10 animate-pulse-glow drop-shadow-lg" />
             </div>

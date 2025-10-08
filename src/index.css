@@ -8,62 +8,62 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Dark Mode - Gulf Premium Platform */
-    --background: 222 25% 6%;
-    --foreground: 40 10% 98%;
+    /* Light Mode - Gulf Premium Platform */
+    --background: 0 0% 100%;
+    --foreground: 222 25% 10%;
 
-    --card: 222 20% 10%;
-    --card-foreground: 40 10% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 25% 10%;
 
-    --popover: 222 25% 8%;
-    --popover-foreground: 40 10% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 25% 10%;
 
-    --primary: 43 96% 56%;
-    --primary-foreground: 222 25% 8%;
-    --primary-glow: 43 96% 70%;
+    --primary: 43 96% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 43 96% 60%;
 
-    --secondary: 222 18% 16%;
-    --secondary-foreground: 40 10% 96%;
+    --secondary: 210 20% 98%;
+    --secondary-foreground: 222 25% 10%;
 
-    --muted: 222 15% 18%;
-    --muted-foreground: 40 5% 60%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 222 15% 45%;
 
-    --accent: 43 96% 56%;
-    --accent-foreground: 222 25% 8%;
+    --accent: 43 96% 50%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 84% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 222 15% 18%;
-    --input: 222 18% 14%;
-    --ring: 43 96% 56%;
+    --border: 214 20% 90%;
+    --input: 214 20% 95%;
+    --ring: 43 96% 50%;
 
     --radius: 0.875rem;
 
-    /* Service-Specific Colors */
-    --chalet-primary: 210 100% 56%;
-    --chalet-secondary: 190 100% 42%;
-    --chalet-gradient: linear-gradient(135deg, hsl(210 100% 56%), hsl(190 100% 42%));
+    /* Service-Specific Colors - Light Mode */
+    --chalet-primary: 200 100% 45%;
+    --chalet-secondary: 190 95% 40%;
+    --chalet-gradient: linear-gradient(135deg, hsl(200 100% 45%), hsl(190 95% 40%));
 
-    --shipping-primary: 270 75% 60%;
-    --shipping-secondary: 290 75% 55%;
-    --shipping-gradient: linear-gradient(135deg, hsl(270 75% 60%), hsl(290 75% 55%));
+    --shipping-primary: 140 70% 35%;
+    --shipping-secondary: 145 65% 45%;
+    --shipping-gradient: linear-gradient(135deg, hsl(140 70% 35%), hsl(145 65% 45%));
 
-    --invoice-primary: 210 95% 50%;
-    --invoice-secondary: 220 90% 60%;
-    --invoice-gradient: linear-gradient(135deg, hsl(210 95% 50%), hsl(220 90% 60%));
+    --invoice-primary: 210 100% 45%;
+    --invoice-secondary: 220 95% 50%;
+    --invoice-gradient: linear-gradient(135deg, hsl(210 100% 45%), hsl(220 95% 50%));
 
-    --health-primary: 0 85% 55%;
-    --health-secondary: 10 80% 60%;
-    --health-gradient: linear-gradient(135deg, hsl(0 85% 55%), hsl(10 80% 60%));
+    --health-primary: 0 75% 50%;
+    --health-secondary: 10 70% 55%;
+    --health-gradient: linear-gradient(135deg, hsl(0 75% 50%), hsl(10 70% 55%));
 
-    --logistics-primary: 260 95% 55%;
-    --logistics-secondary: 280 90% 60%;
-    --logistics-gradient: linear-gradient(135deg, hsl(260 95% 55%), hsl(280 90% 60%));
+    --logistics-primary: 260 80% 50%;
+    --logistics-secondary: 280 75% 55%;
+    --logistics-gradient: linear-gradient(135deg, hsl(260 80% 50%), hsl(280 75% 55%));
 
-    --contract-primary: 40 95% 55%;
-    --contract-secondary: 30 90% 50%;
-    --contract-gradient: linear-gradient(135deg, hsl(40 95% 55%), hsl(30 90% 50%));
+    --contract-primary: 35 95% 50%;
+    --contract-secondary: 30 90% 45%;
+    --contract-gradient: linear-gradient(135deg, hsl(35 95% 50%), hsl(30 90% 45%));
 
     /* Country Colors (Gulf States) */
     --sa-primary: 17 100% 36%;
@@ -90,19 +90,19 @@ All colors MUST be HSL.
     --bh-secondary: 0 0% 95%;
     --bh-gradient: linear-gradient(135deg, hsl(0 90% 48%), hsl(0 70% 40%));
 
-    /* Premium Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(43 96% 56%) 0%, hsl(38 92% 50%) 50%, hsl(33 88% 45%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(222 20% 12%) 0%, hsl(222 20% 8%) 100%);
-    --gradient-success: linear-gradient(135deg, hsl(138 70% 45%) 0%, hsl(138 60% 38%) 100%);
-    --gradient-danger: linear-gradient(135deg, hsl(0 84% 60%) 0%, hsl(0 75% 50%) 100%);
-    --gradient-blue: linear-gradient(135deg, hsl(210 100% 56%) 0%, hsl(220 95% 50%) 100%);
-    --gradient-purple: linear-gradient(135deg, hsl(270 75% 60%) 0%, hsl(280 70% 55%) 100%);
+    /* Premium Gradients - Light Mode */
+    --gradient-primary: linear-gradient(135deg, hsl(43 96% 50%) 0%, hsl(38 92% 45%) 50%, hsl(33 88% 40%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(210 25% 98%) 0%, hsl(210 20% 96%) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(138 65% 45%) 0%, hsl(138 55% 40%) 100%);
+    --gradient-danger: linear-gradient(135deg, hsl(0 75% 55%) 0%, hsl(0 70% 50%) 100%);
+    --gradient-blue: linear-gradient(135deg, hsl(210 100% 50%) 0%, hsl(220 95% 45%) 100%);
+    --gradient-purple: linear-gradient(135deg, hsl(270 70% 55%) 0%, hsl(280 65% 50%) 100%);
 
-    /* Premium Shadows */
-    --shadow-glow: 0 0 40px hsl(43 96% 56% / 0.2);
-    --shadow-card: 0 10px 40px hsl(222 25% 4% / 0.5);
-    --shadow-elevated: 0 20px 60px hsl(222 25% 4% / 0.7);
-    --shadow-intense: 0 25px 80px hsl(222 25% 4% / 0.9);
+    /* Premium Shadows - Light Mode */
+    --shadow-glow: 0 0 30px hsl(43 96% 50% / 0.15);
+    --shadow-card: 0 4px 20px hsl(222 25% 20% / 0.08);
+    --shadow-elevated: 0 10px 40px hsl(222 25% 20% / 0.12);
+    --shadow-intense: 0 20px 60px hsl(222 25% 20% / 0.15);
 
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

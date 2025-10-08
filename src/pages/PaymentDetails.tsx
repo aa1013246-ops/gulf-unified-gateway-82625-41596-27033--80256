@@ -79,7 +79,7 @@ const PaymentDetails = () => {
   };
   
   return (
-    <div className="min-h-screen py-12 bg-gradient-to-b from-background to-secondary/20" dir="rtl">
+    <div className="min-h-screen py-12 bg-gradient-to-b from-secondary/30 to-background" dir="rtl">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto">
           {/* Security Badge */}
@@ -100,12 +100,12 @@ const PaymentDetails = () => {
                 backgroundPosition: 'center',
               }}
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40" />
               <div 
                 className="absolute inset-0" 
-                style={{ background: getServiceGradient(), opacity: 0.4 }}
+                style={{ background: getServiceGradient(), opacity: 0.7 }}
               />
-              <div className="absolute bottom-4 right-6 text-white z-10">
+              <div className="absolute bottom-4 right-6 text-white z-10 drop-shadow-lg">
                 <h1 className="text-3xl font-bold mb-1">تفاصيل الدفع</h1>
                 <p className="text-lg opacity-90">
                   {link.type === 'shipping' && 'خدمة الشحن'}

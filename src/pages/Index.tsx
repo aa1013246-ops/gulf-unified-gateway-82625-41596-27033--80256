@@ -1,51 +1,48 @@
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Sparkles, Shield, Zap } from "lucide-react";
+import { Package, Truck, Globe, Shield, Zap, Search, MapPin } from "lucide-react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import heroImage from "@/assets/logistics-hero.jpg";
+import deliveryPerson from "@/assets/delivery-person.jpg";
+import warehouse from "@/assets/warehouse.jpg";
+import tracking from "@/assets/tracking.jpg";
 
 const Index = () => {
   return (
     <div className="min-h-screen" dir="rtl">
-      <section className="relative overflow-hidden min-h-screen flex items-center">
-        {/* Animated Background */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/5" />
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse-glow" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1s' }} />
+      <Header />
+      <WhatsAppButton />
+
+      {/* Hero Section */}
+      <section className="relative overflow-hidden min-h-[600px] flex items-center">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-foreground/95 via-foreground/80 to-transparent" />
         </div>
         
-        <div className="container mx-auto px-4 py-20 md:py-32 relative z-10">
-          <div className="max-w-5xl mx-auto text-center">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary/20 to-accent/20 backdrop-blur-sm border border-primary/30 rounded-full px-6 py-3 mb-8 animate-fade-in shadow-glow">
-              <Sparkles className="w-5 h-5 text-primary animate-pulse" />
-              <span className="text-sm font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                منصة موحدة لدول الخليج
-              </span>
-            </div>
-            
-            {/* Main Title */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 animate-fade-in">
-              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">
-                Gulf Unified Platform
-              </span>
+        <div className="container mx-auto px-4 py-32 relative z-10">
+          <div className="max-w-3xl">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white animate-fade-in">
+              حلول شحن متكاملة تربط الخليج بالعالم
             </h1>
-            
-            {/* Subtitle */}
-            <p className="text-2xl md:text-3xl text-foreground/90 mb-4 animate-fade-in font-bold">
-              المنصة الخليجية الموحدة للخدمات الرقمية
+            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed animate-fade-in">
+              خدمات لوجستية سريعة وآمنة وموثوقة في جميع أنحاء دول مجلس التعاون الخليجي وخارجها
             </p>
-            
-            {/* Description */}
-            <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-3xl mx-auto animate-fade-in leading-relaxed">
-              احجز الشاليهات الفاخرة، أرسل الشحنات بأمان، وأدر خدماتك بسهولة عبر جميع دول مجلس التعاون الخليجي من مكان واحد
-            </p>
-            
-            {/* CTA Button */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
+            <div className="flex flex-col sm:flex-row gap-4 animate-fade-in">
               <Link to="/services">
-                <Button size="lg" className="text-lg px-10 py-7 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-glow hover:shadow-intense transition-all duration-300 group">
-                  <span className="ml-2 font-bold">ابدأ الآن</span>
-                  <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
+                <Button size="lg" className="text-lg px-10 py-7 bg-primary hover:bg-primary/90 text-white shadow-intense">
+                  استكشف خدماتنا
+                </Button>
+              </Link>
+              <Link to="/track">
+                <Button size="lg" variant="outline" className="text-lg px-10 py-7 bg-white/10 border-white text-white hover:bg-white hover:text-foreground backdrop-blur-sm">
+                  تتبع شحنتك
                 </Button>
               </Link>
             </div>
@@ -53,43 +50,166 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-24 relative bg-gradient-to-b from-background to-card/30">
+      {/* Track Shipment Quick Section */}
+      <section className="py-20 bg-secondary/50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
-            لماذا تختار منصتنا؟
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <Card className="max-w-4xl mx-auto p-8 shadow-elevated">
+            <div className="text-center mb-6">
+              <h2 className="text-3xl font-bold mb-2 text-foreground">تتبع شحنتك</h2>
+              <p className="text-muted-foreground">أدخل رقم التتبع لمعرفة حالة شحنتك</p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Input 
+                placeholder="أدخل رقم التتبع" 
+                className="flex-1 h-14 text-lg"
+              />
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white h-14 px-8">
+                <Search className="ml-2 w-5 h-5" />
+                تتبع الآن
+              </Button>
+            </div>
+          </Card>
+        </div>
+      </section>
+
+      {/* Our Services Section */}
+      <section className="py-24 bg-gradient-to-b from-background to-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">خدماتنا</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              نقدم مجموعة شاملة من الحلول اللوجستية لتلبية جميع احتياجاتك
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {/* Service 1 */}
+            <Card className="group overflow-hidden hover:shadow-elevated transition-all duration-500 hover:-translate-y-2">
+              <div className="h-64 overflow-hidden">
+                <img 
+                  src={deliveryPerson} 
+                  alt="الشحن السريع المحلي" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-6">
+                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                  <Truck className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold mb-3 text-foreground">الشحن السريع المحلي</h3>
+                <p className="text-muted-foreground mb-4 leading-relaxed">
+                  نوصل شحناتك بأمان وفي الوقت المحدد إلى جميع أنحاء الخليج خلال 24-48 ساعة
+                </p>
+                <Link to="/services">
+                  <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-colors">
+                    اعرف المزيد
+                  </Button>
+                </Link>
+              </div>
+            </Card>
+
+            {/* Service 2 */}
+            <Card className="group overflow-hidden hover:shadow-elevated transition-all duration-500 hover:-translate-y-2">
+              <div className="h-64 overflow-hidden">
+                <img 
+                  src={tracking} 
+                  alt="التوصيل الدولي" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-6">
+                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                  <Globe className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold mb-3 text-foreground">التوصيل الدولي</h3>
+                <p className="text-muted-foreground mb-4 leading-relaxed">
+                  خدمات شحن عالمية موثوقة إلى أكثر من 200 دولة حول العالم مع ضمان الجودة
+                </p>
+                <Link to="/services">
+                  <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-colors">
+                    اعرف المزيد
+                  </Button>
+                </Link>
+              </div>
+            </Card>
+
+            {/* Service 3 */}
+            <Card className="group overflow-hidden hover:shadow-elevated transition-all duration-500 hover:-translate-y-2">
+              <div className="h-64 overflow-hidden">
+                <img 
+                  src={warehouse} 
+                  alt="خدمات التجارة الإلكترونية" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-6">
+                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                  <Package className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold mb-3 text-foreground">خدمات التجارة الإلكترونية</h3>
+                <p className="text-muted-foreground mb-4 leading-relaxed">
+                  حلول شاملة لمتاجر الإنترنت تشمل التخزين والتعبئة والتوصيل من الباب للباب
+                </p>
+                <Link to="/services">
+                  <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-colors">
+                    اعرف المزيد
+                  </Button>
+                </Link>
+              </div>
+            </Card>
+          </div>
+
+          <div className="text-center mt-12">
+            <Link to="/services">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-12 py-6 text-lg shadow-glow">
+                عرض جميع الخدمات
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">لماذا تختار Gulf Unified؟</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              نحن شريكك الموثوق في عالم اللوجستيات والشحن
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {/* Feature 1 */}
-            <div className="group text-center p-8 rounded-2xl bg-gradient-to-br from-card to-card/50 backdrop-blur-sm border border-border hover:border-primary/50 transition-all duration-500 hover:shadow-elevated">
-              <div className="w-20 h-20 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+            <div className="text-center p-8 rounded-2xl hover:shadow-card transition-all duration-300">
+              <div className="w-20 h-20 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-glow">
                 <Zap className="w-10 h-10 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">سريع وآمن</h3>
+              <h3 className="text-2xl font-bold mb-3 text-foreground">سرعة فائقة</h3>
               <p className="text-muted-foreground leading-relaxed">
-                معاملات فورية مع أعلى معايير الأمان والحماية المتقدمة
+                نضمن توصيل شحناتك في أسرع وقت ممكن مع الحفاظ على أعلى معايير الجودة والأمان
               </p>
             </div>
 
             {/* Feature 2 */}
-            <div className="group text-center p-8 rounded-2xl bg-gradient-to-br from-card to-card/50 backdrop-blur-sm border border-border hover:border-primary/50 transition-all duration-500 hover:shadow-elevated">
-              <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+            <div className="text-center p-8 rounded-2xl hover:shadow-card transition-all duration-300">
+              <div className="w-20 h-20 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-glow">
                 <Shield className="w-10 h-10 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">موثوق ومعتمد</h3>
+              <h3 className="text-2xl font-bold mb-3 text-foreground">موثوقية عالية</h3>
               <p className="text-muted-foreground leading-relaxed">
-                جميع الخدمات معتمدة ومطابقة للمعايير المحلية والدولية
+                نحن معتمدون ومطابقون لجميع المعايير المحلية والدولية مع سجل حافل في الثقة والأمانة
               </p>
             </div>
 
             {/* Feature 3 */}
-            <div className="group text-center p-8 rounded-2xl bg-gradient-to-br from-card to-card/50 backdrop-blur-sm border border-border hover:border-primary/50 transition-all duration-500 hover:shadow-elevated">
-              <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
-                <Sparkles className="w-10 h-10 text-primary-foreground" />
+            <div className="text-center p-8 rounded-2xl hover:shadow-card transition-all duration-300">
+              <div className="w-20 h-20 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-glow">
+                <MapPin className="w-10 h-10 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">سهل الاستخدام</h3>
+              <h3 className="text-2xl font-bold mb-3 text-foreground">تغطية واسعة</h3>
               <p className="text-muted-foreground leading-relaxed">
-                واجهة بسيطة وسهلة تدعم جميع دول الخليج بتصميم عصري
+                نغطي جميع دول الخليج وأكثر من 200 دولة حول العالم لضمان وصول شحناتك إلى أي مكان
               </p>
             </div>
           </div>
@@ -97,30 +217,37 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/10 via-accent/5 to-transparent" />
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/3 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
+      <section className="py-32 bg-gradient-to-br from-foreground via-foreground/95 to-foreground/90 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary rounded-full blur-3xl" />
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-              جاهز للبدء؟
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+              جاهز لشحن طلبك؟
             </h2>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-12 leading-relaxed">
-              انضم إلى آلاف المستخدمين الذين يثقون بمنصتنا الموحدة
+            <p className="text-xl md:text-2xl text-white/90 mb-12 leading-relaxed">
+              انضم إلى آلاف العملاء الذين يثقون بخدماتنا اللوجستية المتميزة
             </p>
-            <Link to="/services">
-              <Button size="lg" className="text-xl px-12 py-8 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-glow hover:shadow-intense transition-all duration-300 group">
-                <span className="ml-2 font-bold">استكشف الخدمات</span>
-                <ArrowLeft className="w-6 h-6 mr-2 group-hover:-translate-x-1 transition-transform" />
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/services">
+                <Button size="lg" className="text-xl px-12 py-8 bg-primary hover:bg-primary/90 text-white shadow-intense">
+                  ابدأ الشحن الآن
+                </Button>
+              </Link>
+              <Link to="/track">
+                <Button size="lg" variant="outline" className="text-xl px-12 py-8 bg-white/10 border-white text-white hover:bg-white hover:text-foreground backdrop-blur-sm">
+                  تتبع شحنة
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };

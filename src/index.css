@@ -8,35 +8,37 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Light Mode - Gulf Premium Platform */
+    /* Light Mode - Gulf Unified Logistics Platform */
     --background: 0 0% 100%;
-    --foreground: 222 25% 10%;
+    --foreground: 0 0% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 25% 10%;
+    --card-foreground: 0 0% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 25% 10%;
+    --popover-foreground: 0 0% 20%;
 
-    --primary: 43 96% 50%;
+    /* Aramex Red Primary */
+    --primary: 357 88% 45%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 43 96% 60%;
+    --primary-glow: 357 88% 55%;
 
-    --secondary: 210 20% 98%;
-    --secondary-foreground: 222 25% 10%;
+    /* Light Gray Secondary */
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 20%;
 
-    --muted: 210 20% 96%;
-    --muted-foreground: 222 15% 45%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 43 96% 50%;
+    --accent: 357 88% 45%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 20% 90%;
-    --input: 214 20% 95%;
-    --ring: 43 96% 50%;
+    --border: 0 0% 90%;
+    --input: 0 0% 95%;
+    --ring: 357 88% 45%;
 
     --radius: 0.875rem;
 
@@ -90,19 +92,19 @@ All colors MUST be HSL.
     --bh-secondary: 0 0% 95%;
     --bh-gradient: linear-gradient(135deg, hsl(0 90% 48%), hsl(0 70% 40%));
 
-    /* Premium Gradients - Light Mode */
-    --gradient-primary: linear-gradient(135deg, hsl(43 96% 50%) 0%, hsl(38 92% 45%) 50%, hsl(33 88% 40%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(210 25% 98%) 0%, hsl(210 20% 96%) 100%);
+    /* Premium Gradients - Logistics Style */
+    --gradient-primary: linear-gradient(135deg, hsl(357 88% 45%) 0%, hsl(357 88% 35%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 98%) 0%, hsl(0 0% 96%) 100%);
     --gradient-success: linear-gradient(135deg, hsl(138 65% 45%) 0%, hsl(138 55% 40%) 100%);
     --gradient-danger: linear-gradient(135deg, hsl(0 75% 55%) 0%, hsl(0 70% 50%) 100%);
     --gradient-blue: linear-gradient(135deg, hsl(210 100% 50%) 0%, hsl(220 95% 45%) 100%);
-    --gradient-purple: linear-gradient(135deg, hsl(270 70% 55%) 0%, hsl(280 65% 50%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(357 88% 45%) 0%, hsl(357 88% 35%) 50%, hsl(0 0% 20%) 100%);
 
-    /* Premium Shadows - Light Mode */
-    --shadow-glow: 0 0 30px hsl(43 96% 50% / 0.15);
-    --shadow-card: 0 4px 20px hsl(222 25% 20% / 0.08);
-    --shadow-elevated: 0 10px 40px hsl(222 25% 20% / 0.12);
-    --shadow-intense: 0 20px 60px hsl(222 25% 20% / 0.15);
+    /* Premium Shadows - Logistics Style */
+    --shadow-glow: 0 0 30px hsl(357 88% 45% / 0.2);
+    --shadow-card: 0 4px 20px hsl(0 0% 20% / 0.08);
+    --shadow-elevated: 0 10px 40px hsl(0 0% 20% / 0.12);
+    --shadow-intense: 0 20px 60px hsl(357 88% 45% / 0.25);
 
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -119,7 +121,7 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: 'cv11', 'ss01';
-    font-family: 'Cairo', 'Almarai', 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Tajawal', 'Cairo', 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-optical-sizing: auto;
   }
 
